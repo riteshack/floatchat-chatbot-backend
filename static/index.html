@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Data Chatbot - Argo Float Assistant</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fas fa-water"></i>
+                </div>
+                <div class="header-text">
+                    <h1>Ocean Data Chatbot</h1>
+                    <p>Your AI Assistant for Argo Float Oceanographic Data</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="status-indicator">
+                        <div class="status-dot online" id="statusDot"></div>
+                        <span id="statusText">Online</span>
+                    </div>
+                    <button class="clear-chat-btn" onclick="clearChat()">
+                        <i class="fas fa-trash"></i> Clear Chat
+                    </button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                Hello! I'm your Ocean Data Assistant. I can help you query and analyze Argo float data
+                                including:
+                                <ul>
+                                    <li><strong>Temperature</strong> measurements (°C)</li>
+                                    <li><strong>Salinity</strong> data (PSU)</li>
+                                    <li><strong>Pressure</strong> readings (decibar)</li>
+                                    <li><strong>Float cycles</strong> and deployment information</li>
+                                </ul>
+                                Ask me anything about ocean data, trends, or specific measurements!
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="input-group">
+                        <input type="text" id="messageInput"
+                            placeholder="Ask about ocean temperature, salinity, pressure, or any other data..."
+                            autocomplete="off">
+                        <button id="sendButton" onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="quick-questions">
+                        <span class="quick-label">Quick questions:</span>
+                        <button class="quick-btn"
+                            onclick="sendQuickMessage('What is the average temperature in the ocean?')">
+                            Average Temperature
+                        </button>
+                        <button class="quick-btn" onclick="sendQuickMessage('Show me salinity trends over time')">
+                            Salinity Trends
+                        </button>
+                        <button class="quick-btn"
+                            onclick="sendQuickMessage('What is the deepest pressure measurement?')">
+                            Max Pressure
+                        </button>
+                        <button class="quick-btn"
+                            onclick="sendQuickMessage('How many float cycles are in the database?')">
+                            Float Cycles
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="info-panel">
+                    <h3><i class="fas fa-info-circle"></i> About Argo Data</h3>
+                    <div class="info-content">
+                        <div class="info-item">
+                            <strong>Temperature:</strong> Sea temperature measured on the ITS-90 scale in degrees
+                            Celsius
+                        </div>
+                        <div class="info-item">
+                            <strong>Salinity:</strong> Practical salinity measured in PSU (Practical Salinity Units)
+                        </div>
+                        <div class="info-item">
+                            <strong>Pressure:</strong> Sea water pressure in decibar (0 at sea level)
+                        </div>
+                        <div class="info-item">
+                            <strong>Cycles:</strong> Float cycle numbers (0 = launch, 1+ = complete cycles)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tips-panel">
+                    <h3><i class="fas fa-lightbulb"></i> Query Tips</h3>
+                    <div class="tips-content">
+                        <div class="tip">Ask for specific ranges: "temperature between 10-20°C"</div>
+                        <div class="tip">Request trends: "salinity changes over time"</div>
+                        <div class="tip">Compare data: "temperature vs depth"</div>
+                        <div class="tip">Get statistics: "average, min, max values"</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Analyzing ocean data...</p>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
